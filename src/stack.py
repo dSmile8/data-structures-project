@@ -9,6 +9,9 @@ class Node:
         self.data = data
         self.next_node = next_node
 
+    def __repr__(self):
+        return f'{self.data}, {self.next_node}'
+
 
 class Stack:
     """Класс для стека"""
@@ -25,9 +28,14 @@ class Stack:
         :param data: данные, которые будут добавлены на вершину стека
         """
 
-        next_node = self.top
-        new_top = Node(data, next_node)
-        self.top = new_top
+        # next_node = self.top
+        # new_top = Node(data, next_node)
+        # self.top = new_top
+
+        if self.top is None:
+            self.top = Node(data, None)
+        else:
+            self.top = Node(data, self.top)
 
     def pop(self):
         """
@@ -35,4 +43,13 @@ class Stack:
 
         :return: данные удаленного элемента
         """
-        pass
+
+        return_element = self.top
+        self.top = self.top.next_node
+        return return_element.data
+
+    def __repr__(self):
+        return f'{self.top}'
+
+
+
